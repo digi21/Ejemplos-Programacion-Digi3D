@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E3630B00-F7D6-4F2A-A036-9DA1BFE39AC7}"
+	ProjectSection(SolutionItems) = preProject
+		Readme.md = Readme.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigiNG.IO.Gps", "DigiNG.IO.Gps\DigiNG.IO.Gps.csproj", "{6072190A-BF2B-4422-BD3B-241B0E6A22D8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6072190A-BF2B-4422-BD3B-241B0E6A22D8}.Debug|x64.ActiveCfg = Debug|x64
+		{6072190A-BF2B-4422-BD3B-241B0E6A22D8}.Debug|x64.Build.0 = Debug|x64
+		{6072190A-BF2B-4422-BD3B-241B0E6A22D8}.Debug|x86.ActiveCfg = Debug|x86
+		{6072190A-BF2B-4422-BD3B-241B0E6A22D8}.Debug|x86.Build.0 = Debug|x86
+		{6072190A-BF2B-4422-BD3B-241B0E6A22D8}.Release|x64.ActiveCfg = Release|x64
+		{6072190A-BF2B-4422-BD3B-241B0E6A22D8}.Release|x64.Build.0 = Release|x64
+		{6072190A-BF2B-4422-BD3B-241B0E6A22D8}.Release|x86.ActiveCfg = Release|x86
+		{6072190A-BF2B-4422-BD3B-241B0E6A22D8}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {53520587-959D-4A92-99BE-BC0124CFDA70}
+	EndGlobalSection
+EndGlobal
