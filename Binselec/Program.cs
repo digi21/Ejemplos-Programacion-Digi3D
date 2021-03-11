@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.IO;
-using Digi21.DigiNG.IO;
+using Digi21.DigiNG.IO.BinDouble;
 using Digi21.Utilities;
 
 namespace Binselec

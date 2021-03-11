@@ -1,5 +1,5 @@
 ﻿using System;
-using Digi21.DigiNG.IO;
+using Digi21.DigiNG.IO.BinDouble;
 
 namespace EliminaCodigoDeArchivoBin
 {

@@ -1,7 +1,7 @@
 ﻿using Digi21.Digi3D;
 using Digi21.DigiNG.Plugin.Command;
-using Digi21.DigiNG.Plugin.Shell;
 using System;
+using Digi21.DigiNG.Plugin.Menu;
 
 namespace DigiNG.IO.Gps
 {
