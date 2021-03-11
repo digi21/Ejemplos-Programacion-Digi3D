@@ -32,8 +32,9 @@ namespace MuestraAtributosBBDDGeometriasArchivoBinD
                     {
                         var atributos = archivoEntrada.GetDatabaseAttributes(entidad);
 
-                        foreach (var clave in atributos[entidad.Codes[0].Name])
-                            Console.WriteLine($"{clave.Key}: {clave.Value}");
+                        foreach(var código in entidad.Codes)
+                            foreach (var clave in atributos[código.Name])
+                                Console.WriteLine($"{clave.Key}: {clave.Value}");
 
                         Console.Write("-----------------");
                     }
