@@ -35,25 +35,6 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Digi21.DigiNG, Version=17.3.0.0, Culture=neutral, PublicKeyToken=6751d7d8a775bb8c, processorArchitecture=MSIL">
-      <HintPath>..\packages\Digi21.DigiNG.17.3.0\lib\net46\Digi21.DigiNG.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Digi21.DigiNG.Plugin, Version=17.2.0.0, Culture=neutral, PublicKeyToken=6751d7d8a775bb8c, processorArchitecture=MSIL">
-      <HintPath>..\packages\Digi21.DigiNG.Plugin.17.2.1\lib\net46\Digi21.DigiNG.Plugin.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Digi21.Epsg, Version=17.0.0.0, Culture=neutral, PublicKeyToken=6751d7d8a775bb8c, processorArchitecture=MSIL">
-      <HintPath>..\packages\Digi21.Epsg.17.2.0\lib\net46\Digi21.Epsg.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Digi21.OpenGis, Version=17.2.0.0, Culture=neutral, PublicKeyToken=6751d7d8a775bb8c, processorArchitecture=MSIL">
-      <HintPath>..\packages\Digi21.OpenGis.17.2.0\lib\net46\Digi21.OpenGis.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="DotSpatial.Positioning, Version=1.9.0.0, Culture=neutral, PublicKeyToken=f6f66d1554473068, processorArchitecture=MSIL">
-      <HintPath>..\packages\DotSpatial.Positioning.1.9\lib\net40-Client\DotSpatial.Positioning.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Device" />
@@ -81,7 +62,6 @@
     <Compile Include="Órdenes\GpsLocation.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
     <None Include="Readme.md" />
   </ItemGroup>
   <ItemGroup>
@@ -89,6 +69,19 @@
       <DependentUpon>FormularioGps.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <PackageReference Include="Digi21.DigiNG">
+      <Version>22.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Digi21.DigiNG.Plugin">
+      <Version>22.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Digi21.Epsg">
+      <Version>17.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="DotSpatial.Positioning">
+      <Version>1.9.0</Version>
+    </PackageReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
