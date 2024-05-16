@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "EliminarTextosDeArchivoBinD": {
+      "commandName": "Project",
+      "commandLineArgs": "\"D:\\Modelos\\Bronchales\\a.bind\" \"D:\\Modelos\\Bronchales\\_a.bind\" 010123 Hola",
+      "nativeDebugging": true
+    }
+  }
+}
