@@ -25,6 +25,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnadeControlCalidadPythonAM
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EliminaControlesCalidadPythonDuplicados", "EliminaControlesCalidadPythonDuplicados\EliminaControlesCalidadPythonDuplicados.csproj", "{C520A5B2-4B14-42A8-89EB-110F10D6C11A}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BindADwg", "BindADwg\BindADwg.csproj", "{D46C9722-8089-4115-B904-57270F8DCFE2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +69,10 @@ Global
 		{C520A5B2-4B14-42A8-89EB-110F10D6C11A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C520A5B2-4B14-42A8-89EB-110F10D6C11A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C520A5B2-4B14-42A8-89EB-110F10D6C11A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D46C9722-8089-4115-B904-57270F8DCFE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D46C9722-8089-4115-B904-57270F8DCFE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D46C9722-8089-4115-B904-57270F8DCFE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D46C9722-8089-4115-B904-57270F8DCFE2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "BindADwg": {
+      "commandName": "Project",
+      "commandLineArgs": "\"D:\\Modelos\\Bronchales\\a.bind\" \"D:\\Modelos\\Bronchales\\a.dwg\" \"C:\\ProgramData\\Digi3D.NET\\Tablas\\Digi.tab.xml\"",
+      "nativeDebugging": true
+    }
+  }
+}
