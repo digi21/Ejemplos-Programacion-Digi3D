@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "comprimir": {
+      "commandName": "Project",
+      "commandLineArgs": "\"D:\\Modelos\\Bronchales\\a.bind\" \"D:\\Modelos\\Bronchales\\a_comprimido.bind\""
+    }
+  }
+}
