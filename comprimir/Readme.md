@@ -14,4 +14,5 @@ comprimir archivo.bind
 
 Puedes ver cómo se ha desarrollado en el siguiente vídeo.
 
-[![Vídeo de desarrollo](https://youtu.be/6YrmK-p0FEw)
+[![](https://youtu.be/6YrmK-p0FEw)](https://youtu.be/6YrmK-p0FEw)
+
