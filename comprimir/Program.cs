@@ -1,8 +1,8 @@
 ﻿using Digi21.DigiNG.IO.BinDouble;
 
-if (args.Length < 2)
+if (args.Length < 1)
 {
-    Console.Error.WriteLine("Se esperaban parámetros: [archivo de entrada] [archivo de salida]");
+    Console.Error.WriteLine("Se esperaban parámetros: [archivo a comprimir]");
     return;
 }
 
@@ -12,17 +12,23 @@ if (!File.Exists(args[0]))
     return;
 }
 
+var rutaTemporal = Path.Combine(Path.GetTempPath(), Path.ChangeExtension(Path.GetTempFileName(), "bind"));
 
-using var entrada = new BinDouble(args[0]);
-using var salida = new BinDouble(args[1], () => entrada.Wkt);
-
-Console.WriteLine($"Comprimiendo archivo {args[0]}...");
-foreach (var geometría in entrada)
+using (var entrada = new BinDouble(args[0]))
 {
-    if (geometría.Deleted)
-        continue;
+    using var salida = new BinDouble(rutaTemporal, () => entrada.Wkt);
 
-    salida.Add(geometría.Clone());
+    Console.WriteLine($"Comprimiendo archivo {args[0]}...");
+    foreach (var geometría in entrada)
+    {
+        if (geometría.Deleted)
+            continue;
+
+        salida.Add(geometría.Clone());
+    }
 }
+
+File.Delete(args[0]);
+File.Move(rutaTemporal, args[0]);
 
 Console.WriteLine("Trabajo finalizado");
