@@ -14,5 +14,5 @@ comprimir archivo.bind
 
 Puedes ver cómo se ha desarrollado en el siguiente vídeo.
 
-[![](https://youtu.be/6YrmK-p0FEw)](https://youtu.be/6YrmK-p0FEw)
+[![Desarrollando una aplicación de consola para comprimir archivos .bind](https://markdown-videos-api.jorgenkh.no/url?url=https%3A%2F%2Fyoutu.be%2F6YrmK-p0FEw)](https://youtu.be/6YrmK-p0FEw)
 
