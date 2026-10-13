@@ -11,8 +11,8 @@ if (args.Length < 4 || args.Length % 2 != 0)
 var rutaArchivoOriginal = args[0];
 var rutaArchivoCrear = args[1];
 
-var archivoEntrada = new BinDouble(rutaArchivoOriginal);
-var archivoSalida = new BinDouble(rutaArchivoCrear, () => archivoEntrada.Wkt);
+using var archivoEntrada = new BinDouble(rutaArchivoOriginal);
+using var archivoSalida = new BinDouble(rutaArchivoCrear, () => archivoEntrada.Wkt);
 
 var diccionario = new Dictionary<string, List<string>>();
 for (var i = 2; i < args.Length; i+=2)
