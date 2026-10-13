@@ -2,7 +2,7 @@
 using Digi21.DigiNG.IO.BinDouble;
 using Digi21.DigiNG.IO.Dwg;
 
-if (args.Length < 4)
+if (args.Length < 3)
 {
     Console.Error.WriteLine(
         "BindADwg [archivo original] [archivo a crear] [tabla de códigos]");
