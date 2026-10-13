@@ -27,6 +27,9 @@ try
 
     foreach (var entidad in archivoEntrada)
     {
+        if (entidad.Deleted)
+            continue;
+
         try
         {
             var clonada = entidad.Clone();

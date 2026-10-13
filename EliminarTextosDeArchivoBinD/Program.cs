@@ -25,6 +25,9 @@ for (var i = 2; i < args.Length; i+=2)
 
 foreach (var geometria in archivoEntrada)
 {
+    if (geometria.Deleted)
+        continue;
+
     if (EliminarGeometria(geometria, diccionario))
     {
         Console.Write("-");

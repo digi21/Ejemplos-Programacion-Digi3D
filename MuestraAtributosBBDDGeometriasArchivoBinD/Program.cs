@@ -24,6 +24,8 @@ try
 
     foreach (var entidad in archivoEntrada)
     {
+        if (entidad.Deleted)
+            continue;
 
         foreach (var código in entidad.Codes)
         foreach (var clave in código.Attributes)

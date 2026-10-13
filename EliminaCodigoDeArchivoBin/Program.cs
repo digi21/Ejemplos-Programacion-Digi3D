@@ -15,6 +15,9 @@ try
     using var archivoSalida = new BinDouble(args[2], false);
     foreach (var entidad in archivoEntrada)
     {
+        if (entidad.Deleted)
+            continue;
+
         var clonada = entidad.Clone();
 
         // Eliminamos todos los códigos de la entidad clonada

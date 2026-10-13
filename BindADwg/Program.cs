@@ -28,6 +28,9 @@ using var archivoSalida = new Dwg(
 
 foreach (var geometria in archivoEntrada)
 {
+    if (geometria.Deleted)
+        continue;
+
     archivoSalida.Add(geometria.Clone());
     Console.Write("+");
 }

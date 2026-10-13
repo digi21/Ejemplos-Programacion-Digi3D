@@ -21,7 +21,7 @@ foreach (var archivo in archivos)
     Console.WriteLine($"Analizando el archivo: {archivo.Name}");
 
     var entidades = from entidad in archivoEntrada
-        where entidad.TieneAlgúnCódigo(args.Skip(1))
+        where !entidad.Deleted && entidad.TieneAlgúnCódigo(args.Skip(1))
         select entidad;
 
     foreach (var entidad in entidades)
