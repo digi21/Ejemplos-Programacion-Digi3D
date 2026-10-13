@@ -29,7 +29,7 @@ try
             clonada.Codes.Add(código);
         }
 
-        if (entidad.Codes.Count == 0)
+        if (clonada.Codes.Count == 0)
             continue; // No almacenamos la entidad, pues al quitarle el código indicado por parámetros se ha quedado sin códigos. Era el único que tenía.
 
         archivoSalida.Add(clonada);
