@@ -11,6 +11,7 @@ La extensión añade dos órdenes, que abren un panel con las coordenadas del GP
 
 - `TargetFramework` `net10.0-windows10.0.19041.0`, necesario para `Windows.Devices.Geolocation`.
 - Paquetes `Digi21.DigiNG`, `Digi21.DigiNG.Plugin` y `Digi21.CoordinateSystems` 26.0.0, y `DotSpatial.Positioning` 4.0.656 (la primera versión para .NET; la 1.9.0 es para .NET Framework).
+- `Digi21DisableAssemblyResolver` a `true`, como toda extensión, y `EnableDynamicLoading` a `true` para que la compilación copie `DotSpatial.Positioning.dll` y `System.IO.Ports.dll` a la carpeta de salida.
 
 ## Transformación de coordenadas
 

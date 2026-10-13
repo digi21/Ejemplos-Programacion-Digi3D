@@ -10,6 +10,10 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
     <Platforms>AnyCPU</Platforms>
+    <!-- Extensión: Digi3D.AI ya carga los ensamblados de Digi21. -->
+    <Digi21DisableAssemblyResolver>true</Digi21DisableAssemblyResolver>
+    <!-- Copia DotSpatial.Positioning.dll y sus dependencias a la carpeta de salida. -->
+    <EnableDynamicLoading>true</EnableDynamicLoading>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <OutputPath>..\bin\Debug\x64\</OutputPath>
