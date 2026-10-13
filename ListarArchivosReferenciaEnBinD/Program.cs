@@ -6,7 +6,7 @@ if (args.Length < 2)
 {
     Console.Error.WriteLine("Error: No se han especificado parámetros.");
     Console.Error.WriteLine("El formato es: ListarArchivosReferenciaEnBinD.exe [tabla de códigos] [archivo bind]");
-    Console.Error.WriteLine("Ejemplo: EliminaCodigoDeArchivoBin.exe digiBCA.Tab.xml 29091711.bin salida.bin 201");
+    Console.Error.WriteLine("Ejemplo: ListarArchivosReferenciaEnBinD.exe digiBCA.Tab.xml 29091711.bind");
     return;
 }
 
