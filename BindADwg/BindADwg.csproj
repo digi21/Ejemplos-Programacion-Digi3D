@@ -11,10 +11,12 @@
   <!-- Digi21.DigiNG.IO.Dwg no tiene paquete NuGet: se referencia el ensamblado que instala Digi3D.AI.
        Para usar otra instalación: dotnet build -p:Digi3DInstallDir=<carpeta de instalación> -->
   <PropertyGroup>
-    <Digi3DInstallDir Condition="'$(Digi3DInstallDir)' == ''">$(DIGI3D_INSTALLDIR)</Digi3DInstallDir>
-    <Digi3DInstallDir Condition="'$(Digi3DInstallDir)' == ''">$([MSBuild]::GetRegistryValueFromView('HKEY_LOCAL_MACHINE\SOFTWARE\Digi21\Digi3D.NET\App\Configuration', 'InstallDir', null, RegistryView.Registry64))</Digi3DInstallDir>
-    <Digi3DInstallDir Condition="'$(Digi3DInstallDir)' == ''">$(ProgramW6432)\Digi21.net\Digi3D.AI\</Digi3DInstallDir>
-    <Digi21DigiNGIODwgPath>$([MSBuild]::EnsureTrailingSlash('$(Digi3DInstallDir)'))Digi21.DigiNG.IO.Dwg\26.0.0\Digi21.DigiNG.IO.Dwg.dll</Digi21DigiNGIODwgPath>
+    <!-- Propiedad interna: una propiedad global (-p:) no se puede reasignar en el proyecto. -->
+    <_Digi3DInstallDir>$(Digi3DInstallDir)</_Digi3DInstallDir>
+    <_Digi3DInstallDir Condition="'$(_Digi3DInstallDir)' == ''">$(DIGI3D_INSTALLDIR)</_Digi3DInstallDir>
+    <_Digi3DInstallDir Condition="'$(_Digi3DInstallDir)' == ''">$([MSBuild]::GetRegistryValueFromView('HKEY_LOCAL_MACHINE\SOFTWARE\Digi21\Digi3D.NET\App\Configuration', 'InstallDir', null, RegistryView.Registry64))</_Digi3DInstallDir>
+    <_Digi3DInstallDir Condition="'$(_Digi3DInstallDir)' == ''">$(ProgramW6432)\Digi21.net\Digi3D.AI\</_Digi3DInstallDir>
+    <Digi21DigiNGIODwgPath>$([MSBuild]::EnsureTrailingSlash('$(_Digi3DInstallDir)'))Digi21.DigiNG.IO.Dwg\26.0.0\Digi21.DigiNG.IO.Dwg.dll</Digi21DigiNGIODwgPath>
   </PropertyGroup>
 
   <ItemGroup>
