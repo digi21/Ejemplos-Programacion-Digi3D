@@ -2,17 +2,33 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <BaseOutputPath>bin</BaseOutputPath>
     <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
   </PropertyGroup>
 
+  <!-- Digi21.DigiNG.IO.Dwg no tiene paquete NuGet: se referencia el ensamblado que instala Digi3D.AI.
+       Para usar otra instalación: dotnet build -p:Digi3DInstallDir=<carpeta de instalación> -->
+  <PropertyGroup>
+    <Digi3DInstallDir Condition="'$(Digi3DInstallDir)' == ''">$(DIGI3D_INSTALLDIR)</Digi3DInstallDir>
+    <Digi3DInstallDir Condition="'$(Digi3DInstallDir)' == ''">$([MSBuild]::GetRegistryValueFromView('HKEY_LOCAL_MACHINE\SOFTWARE\Digi21\Digi3D.NET\App\Configuration', 'InstallDir', null, RegistryView.Registry64))</Digi3DInstallDir>
+    <Digi3DInstallDir Condition="'$(Digi3DInstallDir)' == ''">$(ProgramW6432)\Digi21.net\Digi3D.AI\</Digi3DInstallDir>
+    <Digi21DigiNGIODwgPath>$([MSBuild]::EnsureTrailingSlash('$(Digi3DInstallDir)'))Digi21.DigiNG.IO.Dwg\26.0.0\Digi21.DigiNG.IO.Dwg.dll</Digi21DigiNGIODwgPath>
+  </PropertyGroup>
+
   <ItemGroup>
-    <PackageReference Include="Digi21.Digi3D.App" Version="24.0.1" />
-    <PackageReference Include="Digi21.DigiNG.IO.BinDouble" Version="24.0.0" />
-    <PackageReference Include="Digi21.DigiNG.IO.Dwg" Version="24.0.0" />
+    <PackageReference Include="Digi21.DigiNG.IO.BinDouble" Version="26.0.0" />
+    <!-- Private=false: el ensamblado no se copia a la salida. Al ejecutarse, Digi3DAssemblyResolver.cs
+         lo carga de la carpeta de instalación junto con las DLL nativas que necesita. -->
+    <Reference Include="Digi21.DigiNG.IO.Dwg">
+      <HintPath>$(Digi21DigiNGIODwgPath)</HintPath>
+      <Private>false</Private>
+    </Reference>
   </ItemGroup>
+
+  <Target Name="CompruebaDigi21DigiNGIODwg" BeforeTargets="ResolveAssemblyReferences" Condition="!Exists('$(Digi21DigiNGIODwgPath)')">
+    <Error Text="No se encuentra $(Digi21DigiNGIODwgPath). Instala Digi3D.AI o indica su carpeta de instalación con -p:Digi3DInstallDir=&lt;carpeta&gt;." />
+  </Target>
 
 </Project>
