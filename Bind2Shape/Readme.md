@@ -1,16 +1,16 @@
-# Bind2Shp
+# Bind2Shape
 
-Este programa de consola carga una tabla de códigos, una base de datos y un archivo .BIND y lo traduce a Shapefile.
-Asume que las geometrías del archivo .bind tienen enlaces de base de datos a una base de datos Access.
+Este programa de consola carga una tabla de cÃ³digos, una base de datos y un archivo .BIND y lo traduce a Shapefile.
+Asume que las geometrÃ­as del archivo .bind tienen enlaces de base de datos a una base de datos Access.
 
-El exportador de Shapefiles de Digi3D.NET tiene la particularidad de que requiere que se pase como ruta un archivo .shp 
-como archivo de salida, aunque ese archivo quizás nunca se cree porque no haya geometrías que se almacenen en dicha capa.
+El cuarto argumento es la ruta de un archivo .shp. El exportador de Shapefiles de Digi3D.AI crea los shapefiles en la
+carpeta de ese archivo, uno por capa, aunque el archivo indicado puede no llegar a crearse si ninguna geometrÃ­a se
+almacena en esa capa.
 
-
-Ejemplo de cómo llamar al programa:
+Ejemplo de cÃ³mo llamar al programa:
 
 ```
-Bind2Shp tablacodigos.tab.xml basedatos.mdb archivo.bind shapefiles\prueba.shp
+Bind2Shape tablacodigos.tab.xml basedatos.mdb archivo.bind shapefiles\prueba.shp
 ```
 
-Este programa almacenará los shapefiles en la subcarpeta _shapefiles_ (según se ha indicado en la línea de comandos anterior). El programa no crea esa subcarpeta, de manera que debe de existir.
+Este programa almacena los shapefiles en la subcarpeta _shapefiles_ (segÃºn se ha indicado en la lÃ­nea de comandos anterior). El programa no crea esa subcarpeta, de manera que tiene que existir.

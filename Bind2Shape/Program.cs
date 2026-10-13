@@ -6,8 +6,9 @@ using Digi21.DigiNG.IO.Shp;
 if (args.Length < 4)
 {
     Console.Error.WriteLine("Error: No se han especificado parámetros.");
-    Console.Error.WriteLine("El formato es: Bind2Shape.exe [tabla de códigos] [base de datos.mdb] [archivo bin a traducir] [carpeta de salida]");
-    Console.Error.WriteLine("Ejemplo: Bind2Shape.exe prueba.Tab.xml prueba.mdb prueba.bind shapefiles");
+    Console.Error.WriteLine("El formato es: Bind2Shape.exe [tabla de códigos] [base de datos.mdb] [archivo bin a traducir] [archivo .shp de salida]");
+    Console.Error.WriteLine("Los shapefiles se crean en la carpeta del archivo .shp de salida, que tiene que existir.");
+    Console.Error.WriteLine(@"Ejemplo: Bind2Shape.exe prueba.Tab.xml prueba.mdb prueba.bind shapefiles\prueba.shp");
     return;
 }
 
