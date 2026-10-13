@@ -1,8 +1,8 @@
-﻿using Digi21.DigiNG;
-using Digi21.OpenGis.CoordinateSystems;
-using Digi21.OpenGis.CoordinateTransformations;
-using Digi21.OpenGis.Epsg;
+﻿using Digi21.CoordinateSystems;
+using Digi21.DigiNG;
+using Digi21.Math;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace DigiNG.IO.Gps
@@ -10,8 +10,9 @@ namespace DigiNG.IO.Gps
     public partial class FormularioGps : Form
     {
         IProveedorGps gps;
-        ICoordinateTransformation transformación;
-        private double[] últimasCoordenadas = new double[3];
+        CoordinateSystem sistemaVentana;
+        readonly Dictionary<ReferenciaAltitud, CoordinateTransformation> transformaciones = new Dictionary<ReferenciaAltitud, CoordinateTransformation>();
+        private Point3D? últimasCoordenadas;
 
         public FormularioGps(IProveedorGps gps)
         {
@@ -26,13 +27,16 @@ namespace DigiNG.IO.Gps
 
         private void DigiNG_DestroyingWindow(object sender, EventArgs e)
         {
-            gps.Stop();
+            Desconecta();
         }
 
         private void Gps_Conectado(object sender, EventArgs e)
         {
-            botonConectar.Text = "Desconectar";
-            botonConectar.Enabled = true;
+            BeginInvoke(new MethodInvoker(() =>
+            {
+                botonConectar.Text = "Desconectar";
+                botonConectar.Enabled = true;
+            }));
         }
 
         private void Gps_Satélites(object sender, EstadoEventArgs e)
@@ -43,6 +47,8 @@ namespace DigiNG.IO.Gps
             }));
         }
 
+        // Los proveedores lanzan los eventos desde otros hilos. Las transformaciones se crean y se usan en el hilo
+        // principal: TransformationOptions.Interactive muestra los cuadros de diálogo de Digi3D.AI.
         private void Gps_Coordenada(object sender, CoordenadasEventArgs e)
         {
             BeginInvoke(new MethodInvoker(() =>
@@ -50,42 +56,79 @@ namespace DigiNG.IO.Gps
                 txtLongitud.Text = e.Coordenadas.X.ToString();
                 txtLatitud.Text = e.Coordenadas.Y.ToString();
                 txtAltitud.Text = e.Coordenadas.Z.ToString();
+
+                var transformación = Transformación(e.Altitud);
+                if (transformación == null)
+                    return;
+
+                try
+                {
+                    últimasCoordenadas = transformación.Transform(e.Coordenadas);
+                }
+                catch (CoordinateSystemException ex)
+                {
+                    Digi21.Digi3D.Digi3D.StatusBar.Text = ex.Message;
+                    return;
+                }
+
+                EnvíaEvento(false, false);
             }));
+        }
 
+        private CoordinateTransformation Transformación(ReferenciaAltitud referencia)
+        {
+            if (transformaciones.TryGetValue(referencia, out var existente))
+                return existente;
 
-            últimasCoordenadas = transformación.MathTransform.Transform(new[]
+            // EPSG:4979 es WGS 84 con altura elipsoidal; EPSG:4326 + EPSG:5773 es WGS 84 con altitud sobre el
+            // geoide EGM96. WithEastNorthAxes: los proveedores dan la longitud antes que la latitud.
+            if (referencia == ReferenciaAltitud.Desconocida)
+                Digi21.Digi3D.Digi3D.StatusBar.Text = "El GPS no indica la referencia de la altitud: se toma como altura elipsoidal";
+
+            try
             {
-                e.Coordenadas.Y,
-                e.Coordenadas.X,
-                e.Coordenadas.Z
-            });
+                var origen = referencia == ReferenciaAltitud.Geoide
+                    ? CoordinateSystem.FromEpsg(4326, 5773)
+                    : CoordinateSystem.FromEpsg(4979);
 
-            EnvíaEvento(false, false);
+                var transformación = CoordinateTransformation.Create(origen.WithEastNorthAxes(), sistemaVentana, TransformationOptions.Interactive);
+                transformaciones[referencia] = transformación;
+                return transformación;
+            }
+            catch (Exception ex) when (ex is CoordinateSystemException || ex is InvalidOperationException)
+            {
+                Desconecta();
+                MessageBox.Show($"Se detectó el error: {ex.Message} al intentar crear una transformación entre el sistema de referencia de coordenadas del GPS y el de la ventana de dibujo");
+                return null;
+            }
+        }
+
+        private void Desconecta()
+        {
+            gps.Stop();
+            botonConectar.Text = "Conectar";
+            botonConectar.Enabled = true;
+
+            foreach (var transformación in transformaciones.Values)
+                transformación.Dispose();
+            transformaciones.Clear();
         }
 
         private void botonConectar_Click(object sender, EventArgs e)
         {
             if (gps.EsConectado)
             {
-                gps.Stop();
-                botonConectar.Text = "Conectar";
+                Desconecta();
             }
             else
             {
                 try
                 {
-                    var coordinateSystemFactory = new CoordinateSystemFactory();
-                    var coordinateTransformationFactory = new CoordinateTransformationFactory();
-
-                    transformación = coordinateTransformationFactory.CreateFrom3DCoordinateSystems(
-                        CoordinateSystemAuthorityFactory.CreateGeographicCoordinateSystem(4979),
-                        coordinateSystemFactory.CreateFromWkt(Digi21.DigiNG.DigiNG.Wkt),
-                        SelectTransformationHelper.DialogSelectTransformation,
-                        CreateVerticalTransformationHelper.DialogCreateVerticalTransformation);
+                    sistemaVentana = CoordinateSystem.FromWkt(Digi21.DigiNG.DigiNG.Wkt);
                 }
-                catch (Exception ex)
+                catch (Exception ex) when (ex is CoordinateSystemException || ex is ArgumentException)
                 {
-                    MessageBox.Show($"Se detectó el error: {ex.Message} al intentar crear una transformación entre el sistema de referencia de coordenadas del GPS y el de la ventana de dibujo");
+                    MessageBox.Show($"Se detectó el error: {ex.Message} al leer el sistema de referencia de coordenadas de la ventana de dibujo");
                     return;
                 }
 
@@ -123,18 +166,13 @@ namespace DigiNG.IO.Gps
             else if (botonDato.Checked)
                 button = InputDeviceButton.Data;
 
-            if (últimasCoordenadas != null)
+            if (últimasCoordenadas is Point3D coordenadas)
             {
                 BeginInvoke(new MethodInvoker(() =>
                 {
                     try
                     {
-                        Digi21.DigiNG.DigiNG.SendInputDeviceEvent(
-                        new Digi21.Math.Point3D(
-                            últimasCoordenadas[0],
-                            últimasCoordenadas[1],
-                            últimasCoordenadas[2]),
-                        button);
+                        Digi21.DigiNG.DigiNG.SendInputDeviceEvent(coordenadas, button);
                     }
                     catch
                     { }

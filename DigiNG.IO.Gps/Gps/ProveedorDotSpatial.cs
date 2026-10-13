@@ -53,7 +53,9 @@ namespace DigiNG.IO.Gps
                 Coordenadas = new Point3D(
                     e.Position.Longitude.ToRadians().Value * 180 / Math.PI,
                     e.Position.Latitude.ToRadians().Value * 180 / Math.PI,
-                    altitud)
+                    altitud),
+                // La sentencia GGA de NMEA da la altitud sobre el nivel medio del mar (geoide).
+                Altitud = ReferenciaAltitud.Geoide
             });
         }
 
