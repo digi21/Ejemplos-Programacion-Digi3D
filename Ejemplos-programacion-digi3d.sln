@@ -31,6 +31,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EliminarTextosDeArchivoBinD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "comprimir", "comprimir\comprimir.csproj", "{6B91E753-3AEB-48A2-82C2-487E87C6D74B}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TopologiasDesdeTabla", "TopologiasDesdeTabla\TopologiasDesdeTabla.csproj", "{0A66FEE1-C612-4170-88C4-A9E523421A63}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -85,6 +87,10 @@ Global
 		{6B91E753-3AEB-48A2-82C2-487E87C6D74B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B91E753-3AEB-48A2-82C2-487E87C6D74B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B91E753-3AEB-48A2-82C2-487E87C6D74B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A66FEE1-C612-4170-88C4-A9E523421A63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A66FEE1-C612-4170-88C4-A9E523421A63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A66FEE1-C612-4170-88C4-A9E523421A63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A66FEE1-C612-4170-88C4-A9E523421A63}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

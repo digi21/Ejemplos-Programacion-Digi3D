@@ -9,7 +9,7 @@ La documentación de cada ejemplo está en la [ayuda de Digi3D.AI](https://githu
 - SDK de .NET 10 (Visual Studio 2026, o `dotnet build` con el SDK 10).
 - Digi3D.AI para .NET 10 instalado en el equipo, para ejecutar las aplicaciones de consola y para compilar `BindADwg`. Las utilidades de tablas de códigos no lo necesitan.
 
-Los proyectos usan `net10.0` y los paquetes NuGet `Digi21.*` de la versión 26.0.0. Los paquetes `Digi21.DigiNG.*` solo contienen ensamblados de referencia: al ejecutarse, el programa carga los ensamblados de la carpeta de instalación de Digi3D.AI. Ningún proyecto referencia ya el paquete `Digi21.Digi3D.App`. La página [Migración a .NET 10](https://github.com/digi21/docs/blob/main/src/digi3d-ai/programacion/.net/migracion-a-net-10.md) explica los cambios respecto a los paquetes 24.0.0.
+Los proyectos usan `net10.0` y los paquetes NuGet `Digi21.*` de la versión 26.0.0, salvo `TopologiasDesdeTabla`, que usa `Digi21.DigiNG` 26.2.0, `Digi21.DigiNG.Topology` 26.1.0, `Digi21.DigiNG.Dtm` 26.0.0 y `Digi21.DigiNG.IO.BinDouble` 26.0.1. Los paquetes `Digi21.DigiNG.*` solo contienen ensamblados de referencia: al ejecutarse, el programa carga los ensamblados de la carpeta de instalación de Digi3D.AI. Ningún proyecto referencia ya el paquete `Digi21.Digi3D.App`. La página [Migración a .NET 10](https://github.com/digi21/docs/blob/main/src/digi3d-ai/programacion/.net/migracion-a-net-10.md) explica los cambios respecto a los paquetes 24.0.0.
 
 ## Compilar
 
@@ -35,6 +35,7 @@ La solución `Ejemplos-programacion-digi3d.sln` no compila completa, porque `Dig
 | `ListarArchivosReferenciaEnBinD` | Aplicación de consola | Muestra los archivos de referencia de un archivo `.bind`. |
 | `MuestraAtributosBBDDGeometriasArchivoBinD` | Aplicación de consola | Muestra los atributos de base de datos de las entidades de un archivo `.bind`. |
 | `Bind2Shape` | Aplicación de consola | Convierte un archivo `.bind` con atributos de base de datos a Shapefile. |
+| `TopologiasDesdeTabla` | Aplicación de consola | Crea con las topologías de una tabla de códigos los polígonos de los `.bind` de una carpeta, con la Z proyectada sobre un modelo digital del terreno `.mdt` opcional, y los añade a cada archivo. |
 | `BindADwg` | Aplicación de consola | Convierte un archivo `.bind` a DWG. Referencia el ensamblado `Digi21.DigiNG.IO.Dwg` de la instalación de Digi3D.AI (ver su `Readme.md`). |
 | `DigiNG.IO.Gps` | Extensión | Añade las órdenes `GPS` y `GPS_CLASICO`, que usan un receptor GPS como dispositivo de entrada. No compila con .NET 10. |
 
